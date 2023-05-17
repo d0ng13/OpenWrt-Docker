@@ -187,7 +187,6 @@ jobs:
           make image PACKAGES="$CONFIG_NORMAL_PACKAGES" FILES="files"
           cp bin/targets/$DEVICE_TARGET/$DEVICE_SUBTARGET/*rootfs.tar.gz $GITHUB_WORKSPACE
           cd $GITHUB_WORKSPACE
-          rm -rf immortalwrt-imagebuilder*
 
       - name: Build & Push Normal Image (Default)
         if: env.DOCKER_EXTERA_TAG == null
