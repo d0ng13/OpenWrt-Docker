@@ -9,7 +9,7 @@
 name: Multi-Arch Images
 
 env:
-  PREFIX_URL: https://openwrt.cc/snapshots/targets
+  PREFIX_URL: https://downloads.immortalwrt.org/releases/18.06-k5.4-SNAPSHOT/targets
 
 on:
   workflow_dispatch:
