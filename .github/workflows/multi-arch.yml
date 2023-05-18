@@ -9,7 +9,7 @@
 name: Multi-Arch Images
 
 env:
-  PREFIX_URL: https://openwrt.proxy.ustclug.org/snapshots/targets
+  PREFIX_URL: https://downloads.immortalwrt.org/snapshots/targets
 
 on:
   workflow_dispatch:
