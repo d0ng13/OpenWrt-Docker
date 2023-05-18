@@ -133,7 +133,7 @@ jobs:
           ls -al bin/targets/$DEVICE_TARGET/$DEVICE_SUBTARGET/
           cp bin/targets/$DEVICE_TARGET/$DEVICE_SUBTARGET/*rootfs.tar.gz $GITHUB_WORKSPACE
           cd $GITHUB_WORKSPACE
-          rm -rf immortalwrt-imagebuilder*
+          rm -rf immortalwrt-imagebuilder-18.06-k5.4-SNAPSHOT-$DEVICE_TARGET-$DEVICE_SUBTARGET.Linux-x86_64
 
       - name: Build & Push Mini Image (Default)
         if: env.DOCKER_EXTERA_TAG == null
