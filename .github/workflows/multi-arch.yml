@@ -9,7 +9,7 @@
 name: Multi-Arch Images
 
 env:
-  PREFIX_URL: https://openwrt.cc/snapshots/targets
+  PREFIX_URL: https://storage.openwrt.cc/snapshots/targets
 
 on:
   workflow_dispatch:
