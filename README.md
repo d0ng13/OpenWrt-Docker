@@ -1,19 +1,19 @@
 # [OpenWrt-Docker](https://github.com/SuLingGG/OpenWrt-Docker)
 
-[![GitHub Stars](https://img.shields.io/github/stars/SuLingGG/OpenWrt-Rpi-Docker.svg?style=flat-square&label=Stars&logo=github)](https://github.com/SuLingGG/OpenWrt-Rpi-Docker/stargazers)
-[![GitHub Forks](https://img.shields.io/github/forks/SuLingGG/OpenWrt-Rpi-Docker.svg?style=flat-square&label=Forks&logo=github)](https://github.com/SuLingGG/OpenWrt-Rpi-Docker/fork)
-[![Docker Stars](https://img.shields.io/docker/stars/sulinggg/openwrt.svg?style=flat-square&label=Stars&logo=docker)](https://hub.docker.com/r/sulinggg/openwrt)
-[![Docker Pulls](https://img.shields.io/docker/pulls/sulinggg/openwrt.svg?style=flat-square&label=Pulls&logo=docker&color=orange)](https://hub.docker.com/r/sulinggg/openwrt)
+[![GitHub Stars](https://img.shields.io/github/stars/zzsrv/OpenWrt-Docker.svg?style=flat-square&label=Stars&logo=github)](https://github.com/zzsrv/OpenWrt-Docker/stargazers)
+[![GitHub Forks](https://img.shields.io/github/forks/zzsrv/OpenWrt-Docker.svg?style=flat-square&label=Forks&logo=github)](https://github.com/zzsrv/OpenWrt-Docker/fork)
+[![Docker Stars](https://img.shields.io/docker/stars/zzsrv/openwrt.svg?style=flat-square&label=Stars&logo=docker)](https://hub.docker.com/r/zzsrv/openwrt)
+[![Docker Pulls](https://img.shields.io/docker/pulls/zzsrv/openwrt.svg?style=flat-square&label=Pulls&logo=docker&color=orange)](https://hub.docker.com/r/zzsrv/openwrt)
 
 本项目旨在构建适用于树莓派 1~4 、适用于 armv6/armv7/armv8(aarch64)/x86_64(amd64) 平台设备的 OpenWrt 镜像 (每日更新)。
 
-Github: <https://github.com/SuLingGG/OpenWrt-Docker>
+Github: <https://github.com/zzsrv/OpenWrt-Docker>
 
 DockerHub: <https://hub.docker.com/r/sulinggg/openwrt>
 
 ## 支持设备及镜像版本
 
-本项目基于 [immortalwrt: openwrt-18.06-k5.4](https://github.com/immortalwrt/immortalwrt/tree/openwrt-18.06-k5.4)，每日上午 8 点编译 OpenWrt 镜像，镜像构建完成后将同时推送到 [DockerHub](https://hub.docker.com/r/sulinggg/openwrt) 和 阿里云镜像仓库 (上海) 。
+本项目基于 [immortalwrt: openwrt-18.06-k5.4](https://github.com/immortalwrt/immortalwrt/tree/openwrt-18.06-k5.4)，每日上午 8 点编译 OpenWrt 镜像，镜像构建完成后将同时推送到 [DockerHub](https://hub.docker.com/r/zzsrv/openwrt) 和 阿里云镜像仓库 (北京) 。
 
 对于国内用户，为提高镜像拉取体验，可以考虑拉取存放于阿里云镜像仓库的镜像，镜像名称及标签如下表所示:
 
@@ -23,13 +23,13 @@ OpenWrt 标准镜像为集成常用软件包的 Docker 镜像，镜像自带软�
 
 |  支持设备/平台  |        DockerHub        |                  阿里云镜像仓库 (上海)                  |
 | :-------------: | :---------------------: | :-----------------------------------------------------: |
-|    树莓派 1B    |  sulinggg/openwrt:rpi1  |  registry.cn-shanghai.aliyuncs.com/suling/openwrt:rpi1  |
-|    树莓派 2B    |  sulinggg/openwrt:rpi2  |  registry.cn-shanghai.aliyuncs.com/suling/openwrt:rpi2  |
-| 树莓派 3B / 3B+ |  sulinggg/openwrt:rpi3  |  registry.cn-shanghai.aliyuncs.com/suling/openwrt:rpi3  |
-|    树莓派 4B    |  sulinggg/openwrt:rpi4  |  registry.cn-shanghai.aliyuncs.com/suling/openwrt:rpi4  |
-|      armv7      | sulinggg/openwrt:armv7  | registry.cn-shanghai.aliyuncs.com/suling/openwrt:armv7  |
-|  arm8/aarch64   | sulinggg/openwrt:armv8  | registry.cn-shanghai.aliyuncs.com/suling/openwrt:armv8  |
-|  x86_64/amd64   | sulinggg/openwrt:x86_64 | registry.cn-shanghai.aliyuncs.com/suling/openwrt:x86_64 |
+|    树莓派 1B    |  zzsrv/openwrt:rpi1  |  registry.cn-beijin.aliyuncs.com/zzsrv/openwrt:rpi1  |
+|    树莓派 2B    |  zzsrv/openwrt:rpi2  |  registry.cn-beijin.aliyuncs.com/zzsrv/openwrt:rpi2  |
+| 树莓派 3B / 3B+ |  zzsrv/openwrt:rpi3  |  registry.cn-beijin.aliyuncs.com/zzsrv/openwrt:rpi3  |
+|    树莓派 4B    |  zzsrv/openwrt:rpi4  |  registry.cn-beijin.aliyuncs.com/zzsrv/openwrt:rpi4  |
+|      armv7      | zzsrv/openwrt:armv7  | registry.cn-beijin.aliyuncs.com/zzsrv/openwrt:armv7  |
+|  arm8/aarch64   | zzsrv/openwrt:armv8  | registry.cn-beijin.aliyuncs.com/zzsrv/openwrt:armv8  |
+|  x86_64/amd64   | zzsrv/openwrt:x86_64 | registry.cn-beijin.aliyuncs.com/zzsrv/openwrt:x86_64 |
 
 ### OpenWrt-Mini 镜像
 
@@ -37,13 +37,13 @@ OpenWrt-Mni 镜像为几乎未添加额外软件包的 Docker 镜像，你可以
 
 |  支持设备/平台  |        DockerHub        |                  阿里云镜像仓库 (上海)                  |
 | :-------------: | :---------------------: | :-----------------------------------------------------: |
-|    树莓派 1B    |  sulinggg/openwrt-mini:rpi1  |  registry.cn-shanghai.aliyuncs.com/suling/openwrt-mini:rpi1  |
-|    树莓派 2B    |  sulinggg/openwrt-mini:rpi2  |  registry.cn-shanghai.aliyuncs.com/suling/openwrt-mini:rpi2  |
-| 树莓派 3B / 3B+ |  sulinggg/openwrt-mini:rpi3  |  registry.cn-shanghai.aliyuncs.com/suling/openwrt-mini:rpi3  |
-|    树莓派 4B    |  sulinggg/openwrt-mini:rpi4  |  registry.cn-shanghai.aliyuncs.com/suling/openwrt-mini:rpi4  |
-|      armv7      | sulinggg/openwrt-mini:armv7  | registry.cn-shanghai.aliyuncs.com/suling/openwrt-mini:armv7  |
-|  arm8/aarch64   | sulinggg/openwrt-mini:armv8  | registry.cn-shanghai.aliyuncs.com/suling/openwrt-mini:armv8  |
-|  x86_64/amd64   | sulinggg/openwrt-mini:x86_64 | registry.cn-shanghai.aliyuncs.com/suling/openwrt-mini:x86_64 |
+|    树莓派 1B    |  zzsrv/openwrt-mini:rpi1  |  registry.cn-beijin.aliyuncs.com/zzsrv/openwrt-mini:rpi1  |
+|    树莓派 2B    |  zzsrv/openwrt-mini:rpi2  |  registry.cn-beijin.aliyuncs.com/zzsrv/openwrt-mini:rpi2  |
+| 树莓派 3B / 3B+ |  zzsrv/openwrt-mini:rpi3  |  registry.cn-beijin.aliyuncs.com/zzsrv/openwrt-mini:rpi3  |
+|    树莓派 4B    |  zzsrv/openwrt-mini:rpi4  |  registry.cn-beijin.aliyuncs.com/zzsrv/openwrt-mini:rpi4  |
+|      armv7      | zzsrv/openwrt-mini:armv7  | registry.cn-beijin.aliyuncs.com/zzsrv/openwrt-mini:armv7  |
+|  arm8/aarch64   | zzsrv/openwrt-mini:armv8  | registry.cn-beijin.aliyuncs.com/zzsrv/openwrt-mini:armv8  |
+|  x86_64/amd64   | zzsrv/openwrt-mini:x86_64 | registry.cn-beijin.aliyuncs.com/zzsrv/openwrt-mini:x86_64 |
 
 ## 注意事项
 
