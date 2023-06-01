@@ -27,16 +27,6 @@ OpenWrt 标准镜像为集成常用软件包的 Docker 镜像，镜像自带软�
 |  x86_64/amd64   | zzsrv/openwrt:x86_64 | registry.cn-beijin.aliyuncs.com/zzsrv/openwrt:x86_64 |
 |  x86_64/amd64   | zzsrv/openwrt:amd64 | registry.cn-beijin.aliyuncs.com/zzsrv/openwrt:amd64 |
 
-### OpenWrt-Mini 镜像
-
-OpenWrt-Mni 镜像为几乎未添加额外软件包的 Docker 镜像，你可以自行通过 opkg 安装你需要的软件包。
-
-|  支持设备/平台  |        DockerHub        |                  阿里云镜像仓库 (北京)                  |
-| :-------------: | :---------------------: | :-----------------------------------------------------: |
-|  x86_64/amd64   | zzsrv/openwrt-mini:latest | registry.cn-beijin.aliyuncs.com/zzsrv/openwrt-mini:latest |
-|  x86_64/amd64   | zzsrv/openwrt-mini:x86_64 | registry.cn-beijin.aliyuncs.com/zzsrv/openwrt-mini:x86_64 |
-|  x86_64/amd64   | zzsrv/openwrt-mini:amd64 | registry.cn-beijin.aliyuncs.com/zzsrv/openwrt-mini:amd64 |
-
 ## 注意事项
 - (对于高级用户) 某些软件包可能依赖一些特定的内核特性，所以我不保证 opkg 软件源中的所有软件包都可以正常使用。且因为上文所述原因，在 OpenWrt 中安装 kmod 是无效的，如果有需求，请提前在宿主机中提前载入相应的内核模块，例如:
 
