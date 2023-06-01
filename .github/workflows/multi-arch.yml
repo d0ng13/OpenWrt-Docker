@@ -107,7 +107,7 @@ jobs:
         run: |
           wget -q $PREFIX_URL/$DEVICE_TARGET/$DEVICE_SUBTARGET/immortalwrt-imagebuilder-23.05-SNAPSHOT-$DEVICE_TARGET-$DEVICE_SUBTARGET.Linux-x86_64.tar.xz
 
-     - name: Set Image Builder
+      - name: Set Image Builder
         run: |
           tar -xJf *.tar.xz
           cd immortalwrt-imagebuilder-23.05-SNAPSHOT-$DEVICE_TARGET-$DEVICE_SUBTARGET.Linux-x86_64
