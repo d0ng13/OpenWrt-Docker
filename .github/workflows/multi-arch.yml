@@ -107,7 +107,7 @@ jobs:
         run: |
           wget -q $PREFIX_URL/$DEVICE_TARGET/$DEVICE_SUBTARGET/immortalwrt-imagebuilder-$DEVICE_TARGET-$DEVICE_SUBTARGET.Linux-x86_64.tar.xz
 
-      - name: Set Mini Image Builder
+      - name: Set Image Builder
         run: |
           tar -xJf *.tar.xz
           cd immortalwrt-imagebuilder-$DEVICE_TARGET-$DEVICE_SUBTARGET.Linux-x86_64
@@ -123,65 +123,7 @@ jobs:
             s/KERNEL_VERSION/$KERNEL_VERSION/g; \
             s/DEVICE_PLATFORM/$DEVICE_PLATFORM/g" files/etc/opkg/distfeeds.conf
 
-      - name: Build Mini RootFS
-        run: |
-          cd immortalwrt-imagebuilder-$DEVICE_TARGET-$DEVICE_SUBTARGET.Linux-x86_64
-          sed -i "/CONFIG_TARGET_ROOTFS_SQUASHFS/s/.*/# CONFIG_TARGET_ROOTFS_SQUASHFS is not set/;
-            /CONFIG_TARGET_ROOTFS_EXT4FS/s/.*/# CONFIG_TARGET_ROOTFS_EXT4FS is not set/" .config
-          export CONFIG_MINI_PACKAGES=$(cat $GITHUB_WORKSPACE/config/mini-packages.config | tr -s "\n" " ")
-          make image PACKAGES="$CONFIG_MINI_PACKAGES" FILES="files"
-          ls -alh bin/targets/$DEVICE_TARGET/$DEVICE_SUBTARGET/
-          cp bin/targets/$DEVICE_TARGET/$DEVICE_SUBTARGET/*rootfs.tar.gz $GITHUB_WORKSPACE
-          cd $GITHUB_WORKSPACE
-          rm -rf immortalwrt-imagebuilder-$DEVICE_TARGET-$DEVICE_SUBTARGET.Linux-x86_64
-
-      - name: Build & Push Mini Image (Default)
-        if: env.DOCKER_EXTERA_TAG == null
-        uses: docker/build-push-action@v2
-        with:
-          platforms: ${{ env.DOCKER_IMAGE_ARCH }}
-          file: Dockerfile
-          context: .
-          push: true
-          tags: |
-            ${{ secrets.DOCKERHUB_USERNAME }}/openwrt-mini:${{ env.DEVICE_PLATFORM }}
-            ${{ secrets.DOCKERHUB_USERNAME }}/openwrt-mini:latest
-            registry.cn-beijing.aliyuncs.com/${{ secrets.ALIYUN_NAMESPACES }}/openwrt-mini:${{ env.DEVICE_PLATFORM }}
-            registry.cn-beijing.aliyuncs.com/${{ secrets.ALIYUN_NAMESPACES }}/openwrt-mini:latest
-
-      - name: Build & Push Mini Image (Extra Tag)
-        if: env.DOCKER_EXTERA_TAG != null
-        uses: docker/build-push-action@v2
-        with:
-          platforms: ${{ env.DOCKER_IMAGE_ARCH }}
-          file: Dockerfile
-          context: .
-          push: true
-          tags: |
-            ${{ secrets.DOCKERHUB_USERNAME }}/openwrt-mini:${{ env.DEVICE_PLATFORM }}
-            ${{ secrets.DOCKERHUB_USERNAME }}/openwrt-mini:${{ env.DOCKER_EXTERA_TAG }}
-            ${{ secrets.DOCKERHUB_USERNAME }}/openwrt-mini:latest
-            registry.cn-beijing.aliyuncs.com/${{ secrets.ALIYUN_NAMESPACES }}/openwrt-mini:${{ env.DEVICE_PLATFORM }}
-            registry.cn-beijing.aliyuncs.com/${{ secrets.ALIYUN_NAMESPACES }}/openwrt-mini:${{ env.DOCKER_EXTERA_TAG }}
-            registry.cn-beijing.aliyuncs.com/${{ secrets.ALIYUN_NAMESPACES }}/openwrt-mini:latest
-
-      - name: Set Normal Image Builder
-        run: |
-          tar -xJf *.tar.xz
-          cd immortalwrt-imagebuilder-$DEVICE_TARGET-$DEVICE_SUBTARGET.Linux-x86_64
-          cp -f $GITHUB_WORKSPACE/config/repositories.conf .
-          sed -i "s/DEVICE_SUBTARGET/$DEVICE_SUBTARGET/g; \
-            s/DEVICE_TARGET/$DEVICE_TARGET/g; \
-            s/DEVICE_PLATFORM/$DEVICE_PLATFORM/g" repositories.conf
-          cp -rf $GITHUB_WORKSPACE/files .
-          chmod +x files/etc/rc.local
-          export KERNEL_VERSION="$(ls packages | grep kernel | awk -F '_' '{print $2}')"
-          sed -i "s/DEVICE_SUBTARGET/$DEVICE_SUBTARGET/g; \
-            s/DEVICE_TARGET/$DEVICE_TARGET/g; \
-            s/KERNEL_VERSION/$KERNEL_VERSION/g; \
-            s/DEVICE_PLATFORM/$DEVICE_PLATFORM/g" files/etc/opkg/distfeeds.conf
-
-      - name: Build Normal RootFS
+      - name: Build RootFS
         run: |
           cd immortalwrt-imagebuilder-$DEVICE_TARGET-$DEVICE_SUBTARGET.Linux-x86_64
           chmod +x $GITHUB_WORKSPACE/scripts/*
@@ -195,7 +137,7 @@ jobs:
           cd $GITHUB_WORKSPACE
           rm -rf immortalwrt-imagebuilder*
 
-      - name: Build & Push Normal Image (Default)
+      - name: Build & Push Image (Default)
         if: env.DOCKER_EXTERA_TAG == null
         uses: docker/build-push-action@v2
         with:
@@ -204,12 +146,12 @@ jobs:
           context: .
           push: true
           tags: |
+            ${{ secrets.DOCKERHUB_USERNAME }}/openwrt:latest
             ${{ secrets.DOCKERHUB_USERNAME }}/openwrt:${{ env.DEVICE_PLATFORM }}
-            ${{ secrets.DOCKERHUB_USERNAME }}/openwrt-mini:latest
+            registry.cn-beijing.aliyuncs.com/${{ secrets.ALIYUN_NAMESPACES }}/openwrt:latest
             registry.cn-beijing.aliyuncs.com/${{ secrets.ALIYUN_NAMESPACES }}/openwrt:${{ env.DEVICE_PLATFORM }}
-            registry.cn-beijing.aliyuncs.com/${{ secrets.ALIYUN_NAMESPACES }}/openwrt-mini:latest
 
-      - name: Build & Push Normal Image (Extra Tag)
+      - name: Build & Push Image (Extra Tag)
         if: env.DOCKER_EXTERA_TAG != null
         uses: docker/build-push-action@v2
         with:
@@ -218,9 +160,9 @@ jobs:
           context: .
           push: true
           tags: |
+            ${{ secrets.DOCKERHUB_USERNAME }}/openwrt:latest
             ${{ secrets.DOCKERHUB_USERNAME }}/openwrt:${{ env.DEVICE_PLATFORM }}
             ${{ secrets.DOCKERHUB_USERNAME }}/openwrt:${{ env.DOCKER_EXTERA_TAG }}
-            ${{ secrets.DOCKERHUB_USERNAME }}/openwrt-mini:latest
+            registry.cn-beijing.aliyuncs.com/${{ secrets.ALIYUN_NAMESPACES }}/openwrt:latest
             registry.cn-beijing.aliyuncs.com/${{ secrets.ALIYUN_NAMESPACES }}/openwrt:${{ env.DEVICE_PLATFORM }}
             registry.cn-beijing.aliyuncs.com/${{ secrets.ALIYUN_NAMESPACES }}/openwrt:${{ env.DOCKER_EXTERA_TAG }}
-            registry.cn-beijing.aliyuncs.com/${{ secrets.ALIYUN_NAMESPACES }}/openwrt-mini:latest
