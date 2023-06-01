@@ -128,7 +128,8 @@ jobs:
           cd immortalwrt-imagebuilder-23.05-SNAPSHOT-$DEVICE_TARGET-$DEVICE_SUBTARGET.Linux-x86_64
           chmod +x $GITHUB_WORKSPACE/scripts/*
           $GITHUB_WORKSPACE/scripts/preset-terminal-tools.sh
-          make image FILES="files"
+          export CONFIG_PACKAGES=$(cat $GITHUB_WORKSPACE/config/packages.config | tr -s "\n" " ")
+          make image PACKAGES="$CONFIG_PACKAGES" FILES="files"
           ls -alh bin/targets/$DEVICE_TARGET/$DEVICE_SUBTARGET/
           cp bin/targets/$DEVICE_TARGET/$DEVICE_SUBTARGET/*rootfs.tar.gz $GITHUB_WORKSPACE
           cd $GITHUB_WORKSPACE
