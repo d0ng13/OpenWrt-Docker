@@ -27,17 +27,6 @@ OpenWrt 标准镜像为集成常用软件包的 Docker 镜像，镜像自带软�
 |  x86_64/amd64   | zzsrv/openwrt:x86_64 | registry.cn-beijin.aliyuncs.com/zzsrv/openwrt:x86_64 |
 |  x86_64/amd64   | zzsrv/openwrt:amd64 | registry.cn-beijin.aliyuncs.com/zzsrv/openwrt:amd64 |
 
-## 注意事项
-- (对于高级用户) 某些软件包可能依赖一些特定的内核特性，所以我不保证 opkg 软件源中的所有软件包都可以正常使用。且因为上文所述原因，在 OpenWrt 中安装 kmod 是无效的，如果有需求，请提前在宿主机中提前载入相应的内核模块，例如:
-
-```
-modprobe ip6_udp_tunnel
-modprobe ip6table_nat
-modprobe pppoe
-modprobe tun
-modprobe udp_tunnel
-modprobe xt_TPROXY
-```
 
 镜像详细使用方法请参考博客文章:
 
@@ -46,6 +35,10 @@ modprobe xt_TPROXY
 <https://mlapp.cn/376.html>
 
 ## 鸣谢
+
+SuLingGG/OpenWrt-Docker (本项目基于此项目修改):
+
+<https://github.com/SuLingGG/OpenWrt-Docker>
 
 P3TERX/Actions-OpenWrt (本项目基于此项目):
 
