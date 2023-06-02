@@ -10,15 +10,10 @@ config globals 'globals'
 config interface 'lan'
         option proto 'static'
         option netmask '255.255.255.0'
-        option ip6assign '60'
-        option ipaddr '192.168.1.6'
-        option gateway '192.168.1.1'
-        option dns '192.168.1.1'
+        option ipaddr '192.168.100.100'
+        option gateway '192.168.100.1'
+        option dns '192.168.100.1'
         option device 'br-lan'
-
-config interface 'vpn0'
-        option proto 'none'
-        option device 'tun0'
 
 config device
         option name 'br-lan'
