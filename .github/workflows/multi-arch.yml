@@ -9,7 +9,8 @@
 name: Multi-Arch Images
 
 env:
-  PREFIX_URL: https://downloads.immortalwrt.org/releases/23.05-SNAPSHOT/targets
+  WRT_VER: 23.05.0-rc1
+  PREFIX_URL: https://downloads.immortalwrt.org/releases/$WRT_VER/targets
 
 on:
   workflow_dispatch:
@@ -99,18 +100,18 @@ jobs:
 
       - name: Download Image Builder
         run: |
-          wget -q $PREFIX_URL/$DEVICE_TARGET/$DEVICE_SUBTARGET/immortalwrt-imagebuilder-23.05-SNAPSHOT-$DEVICE_TARGET-$DEVICE_SUBTARGET.Linux-x86_64.tar.xz
+          wget -q $PREFIX_URL/$DEVICE_TARGET/$DEVICE_SUBTARGET/immortalwrt-imagebuilder-$WRT_VER-$DEVICE_TARGET-$DEVICE_SUBTARGET.Linux-x86_64.tar.xz
 
       - name: Set Image Builder
         run: |
           tar -xJf *.tar.xz
-          cd immortalwrt-imagebuilder-23.05-SNAPSHOT-$DEVICE_TARGET-$DEVICE_SUBTARGET.Linux-x86_64
+          cd immortalwrt-imagebuilder-$WRT_VER-$DEVICE_TARGET-$DEVICE_SUBTARGET.Linux-x86_64
           cp -rf $GITHUB_WORKSPACE/files .
           chmod +x files/etc/rc.local
 
       - name: Build RootFS
         run: |
-          cd immortalwrt-imagebuilder-23.05-SNAPSHOT-$DEVICE_TARGET-$DEVICE_SUBTARGET.Linux-x86_64
+          cd immortalwrt-imagebuilder-$WRT_VER-$DEVICE_TARGET-$DEVICE_SUBTARGET.Linux-x86_64
           chmod +x $GITHUB_WORKSPACE/scripts/*
           $GITHUB_WORKSPACE/scripts/preset-terminal-tools.sh
           export CONFIG_PACKAGES=$(cat $GITHUB_WORKSPACE/config/packages.config | tr -s "\n" " ")
