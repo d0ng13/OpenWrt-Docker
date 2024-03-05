@@ -9,8 +9,8 @@
 name: Multi-Arch Images
 
 env:
-  WRT_VER: 23.05.0-rc2
-  PREFIX_URL: https://downloads.immortalwrt.org/releases/23.05.0-rc2/targets
+  WRT_VER: 23.05.1
+  PREFIX_URL: https://downloads.immortalwrt.org/releases/23.05.1/targets
 
 on:
   workflow_dispatch:
